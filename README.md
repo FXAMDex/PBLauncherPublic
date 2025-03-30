@@ -13,63 +13,61 @@
 </p>
 
 # PBLauncher Public Version - Easy setup
-> Public launcher dedicated to private servers | Launcher público dedicado a servidores privados
+> Public launcher dedicated to private servers | Public launcher dedicated to private servers
 
-# Recursos
-* Sistema de atualização dos arquivos do jogo
-* Sistema de atualização do PBLauncher.exe, usando Assembly.ProductVersion
-* Inicialização do jogo com suporte ao Xigncode_Loader
-* Sistema de mensagem personalizada para manutenções ou alertas de aberturas
+# Features
+* Game file update system
+* PBLauncher.exe update system, using Assembly.ProductVersion
+* Game startup with support for Xigncode_Loader
+* Custom message system for maintenance or launch alerts
 * LauncherKey via host
-* Sistema de detecção de programa malicioso (pode ser aprimorado)
-* Sistema de banir acesso ao launcher (pode ser aprimorado)
-* Configuração do launcher simples e fácil, tudo em um arquivo
+* Malicious program detection system (can be improved)
+* Launcher access ban system (can be improved)
+* Simple and easy launcher configuration, all in one file
+# New Feature
+* Change Language System
+* Banned IP Computer And Other
+* Login System Any Version
 
-# Configurações
-* No htdocs do seu site coloque a pasta 'launcher'.
-* Edite as configurações de abertura no arquivo 'settings.conf' e salve com o encode UTF-8.
-* Abra o projeto no visual studio, procure o arquivo 'Connect.cs' coloque o nome do seu project e o URL do 'settings.conf', compile, se tudo ocorrer sem erros, o launcher estará pronto para uso.
-
-```ascii
+# Settings
+* In your site's htdocs, place the 'launcher' folder.
+* Edit the launch settings in the 'settings.conf' file and save with UTF-8 encoding. * Open the project in visual studio, look for the 'Connect.cs' file, enter the name of your project and the URL of 'settings.conf', compile, if everything goes without errors, the launcher will be ready to use.
+  
 [Status]
-1= Manutenção
-2= Manutenção + Alerta
-3= Início normal
-4= Início normal + Alerta
+1= Maintenance
+2= Maintenance + Alert
+3= Normal start
+4= Normal start + Alert
 
-[Notice / Alerta]
-Escreva qualquer texto no arquivo que deseje anunciar aos players.
-Mude um status que possua '+ alerta'
-*Caso o alerta estiver vazio o status vai ser ajustado automaticamente e nada será exibido.
+[Notice]
+Write any text in the file that you want to announce to the players.
+Change a status that has '+ alert'
+*If the alert is empty, the status will be adjusted automatically and nothing will be displayed.
 
-O Alerta irá aparecer cada vez que o player abrir o launcher até o status voltar a ser 3.
-
+The Alert will appear each time the player opens the launcher until the status returns to 3.
 
 [Updates]
-Monte o update conforme ficará na raiz do jogo e zipe com o Windows Explorer em .zip (obrigatório)
-com o seguinte nome "patch_VERSÃO DA ATT", exemplo:
-Atualização 1 o nome do arquivo será "patch_1.zip" e na config.zpt coloque 1 também.
-Coloque a config.zpt dentro da patch_1.zip, ela deve estar sem pastas, pois ela ficará na raiz.
-Após isso para liberar a atualização coloque 1 no settings.conf em 'clientversion'
+Mount the update as it will be in the game root and zip it with Windows Explorer in .zip (required)
+with the following name "patch_VERSION OF ATT", example:
+Update 1 the name of the file will be "patch_1.zip" and in config.zpt put 1 as well.
+Place config.zpt inside patch_1.zip, it must be without folders, as it will be in the root.
+After that, to release the update, put 1 in settings.conf in 'clientversion'
 
+EX: FOLDER structure to update the game's '\config\' and 2 random packs!
 
-EX: Estrutura da PASTA para atualizar a '\config\' do jogo e 2 packs aleatório!
+patch_1.zip
+├──\config.zpt
+│ *inside should be 'version=1'
+├──\Config
+│ └──\lwsi_En.sif
+└──\Pack
+├──\pack_da_aug.i3Pack
+└──\segundo_pack.i3pack
 
+IMPORTANT:
+NEVER GO BACK a version, like 10 going back to 9, this will reset the order and cause errors!
 
-patch_1.zip 
-	├──\config.zpt 
-	│     *dentro deve estar 'version=1'
-	├──\Config
-	│     └──\lwsi_En.sif
-	└──\Pack
-	      ├──\pack_da_aug.i3Pack
-	      └──\segundo_pack.i3pack
-
-
-IMPORTANTE:
-NUNCA VOLTE uma versão, tipo 10 voltar para 9, isso resetará a ordem e causará erros!
-NÃO altere a versão do 'clientversion' sem ter o arquivo com a versão também!
-NUNCA esqueça da config.zpt ou erre a versão, causará loop de atualização infinita.
-Siga a contagem em ordem (1, 2, 3, 4...) 
+DO NOT change the 'clientversion' version without having the file with the version too! NEVER forget the config.zpt or enter the wrong version, it will cause an infinite update loop.
+Follow the count in order (1, 2, 3, 4...)
 
 ```
