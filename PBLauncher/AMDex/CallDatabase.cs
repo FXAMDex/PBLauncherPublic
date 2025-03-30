@@ -15,7 +15,7 @@ namespace PBLauncher.AMDex
     {
         public static class DBConfig
         {
-            public static string DBCallConfig = "Host=167.172.79.41;Database=v316;Username=postgres;Password=spacegrid2025;";
+            public static string DBCallConfig = "Host=localhost;Database=yourdatabase;Username=postgres;Password=yourpassword;";
         }
         public static async Task ValidateDevice()
         {
@@ -91,8 +91,7 @@ namespace PBLauncher.AMDex
                             }
                             else
                             {
-                                // Tanggal kadaluarsa belum lewat
-                                // Lakukan aksi yang diinginkan
+
                             }
                         }
                         else
