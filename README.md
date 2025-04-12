@@ -20,7 +20,8 @@
 * Change Language System
 * Banned IP Computer And Other
 * Login System Any Version
-* Change System Login Version 
+* Change System Login Version Using System Login or without using 
+* Added Registration Feature on Register Form Panel, but you need to fix it a bit
 
 # Settings
 * In your site's htdocs, place the 'launcher' folder.
