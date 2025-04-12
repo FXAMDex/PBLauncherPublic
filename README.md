@@ -4,14 +4,6 @@
     </a>
 </p>
 
-<p align="center">
-    PBLauncher for PBServer v3.24
-    <br />
-    <a href="https://github.com/codecorno/PBLauncher-v3.24"><strong>Acessar »</strong></a>
-    <br />
-  </p>
-</p>
-
 # PBLauncher Public Version - Easy setup
 > Public launcher dedicated to private servers | Public launcher dedicated to private servers
 
