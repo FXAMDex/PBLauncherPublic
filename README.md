@@ -7,6 +7,9 @@
 # PBLauncher Public Version - Easy setup
 > Public launcher dedicated to private servers | Public launcher dedicated to private servers
 
+
+> I modified this PBLauncher again so that it has unique characteristics like Zepetto
+
 # Features
 * Game file update system
 * PBLauncher.exe update system, using Assembly.ProductVersion
