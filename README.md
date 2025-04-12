@@ -17,7 +17,9 @@
 * Launcher access ban system (can be improved)
 * Simple and easy launcher configuration, all in one file
 # New Feature
-* Change Language System
+* Change Language System English to Indonesia
+* Banned with duration and additional Reason features 
+* Update Interface To Zepetto Concept
 * Banned IP Computer And Other
 * Login System Any Version
 * Change System Login Version Using System Login or without using 
