@@ -1,11 +1,4 @@
-﻿using Core;
-using Core.Properties;
-using Npgsql;
-using NpgsqlTypes;
-using PBLauncher.AMDex;
-using PBLauncher.Properties;
-using PBLauncher.Utils;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -19,7 +12,15 @@ using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Core;
+using Core.Properties;
+using Npgsql;
+using NpgsqlTypes;
+using PBLauncher.AMDex;
+using PBLauncher.Properties;
+using PBLauncher.Utils;
 using static System.Net.Mime.MediaTypeNames;
+using static PBLauncher.AMDex.CallDatabase;
 using Application = System.Windows.Forms.Application;
 using Resources = PBLauncher.Properties.Resources;
 
@@ -73,7 +74,15 @@ namespace PBLauncher.Login
         private void MessageErrorTypeLogin()
         {
             STR_MESSAGE.Show();
-            STR_MESSAGE.Text = "Error Launcher Login Code Type!\nPlease Contact Administrator";
+            STR_MESSAGE.Text = "Error Launcher Login Code Type Invalid!\nPlease Contact Administrator";
+            OKButtonMessage.Show();
+            Line_Message.Show();
+            MessageBoxPack.Show();
+        }
+        private void MessageLoginTemporaryBAN()
+        {
+            STR_MESSAGE.Show();
+            STR_MESSAGE.Text = Instancia._strings.LOGIN_TEMPORARY_BAN;
             OKButtonMessage.Show();
             Line_Message.Show();
             MessageBoxPack.Show();
@@ -418,7 +427,8 @@ namespace PBLauncher.Login
         }
         private async void RunGameV368()
         {
-
+            // Same as V316RU, for the game executable
+            // You game executable logic here
         }
         private void checkBox1_CheckedChanged(object sender, EventArgs e)
         {

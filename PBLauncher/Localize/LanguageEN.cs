@@ -58,5 +58,6 @@ namespace PBLauncher.Localize
         public string ID_PASSWORD_NULL { get; set; } = "Username Or Password Must Fill";
         public string CLICK_LOGIN { get; set; } = "Click Login For Continue";
         public string MAINTENANCE_FEATURE { get; set; } = "This Feature Under Maintenace";
+        public string LOGIN_TEMPORARY_BAN { get; set; } = "Too many login attempts, Login Blocked During 1 Hour";
     }
 }

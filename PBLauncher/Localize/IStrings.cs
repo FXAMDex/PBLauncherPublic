@@ -58,6 +58,7 @@ namespace PBLauncher.Localize
         string ID_PASSWORD_NULL {  get; set; }
         string CLICK_LOGIN {  get; set; }
         string MAINTENANCE_FEATURE {  get; set; }
+        string LOGIN_TEMPORARY_BAN {  get; set; }
     }
 
     public interface LoginString

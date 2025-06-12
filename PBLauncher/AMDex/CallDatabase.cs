@@ -1,4 +1,5 @@
 ﻿using Npgsql;
+using PBLauncher.Localize;
 using PBLauncher.Login;
 using System;
 using System.Collections.Generic;

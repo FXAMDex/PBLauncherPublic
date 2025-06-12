@@ -59,5 +59,6 @@ namespace PBLauncher.Localize
         public string ID_PASSWORD_NULL { get; set; } = "Username atau Password harus di isi!";
         public string CLICK_LOGIN { get; set; } = "Click Login Untuk Melanjutkan";
         public string MAINTENANCE_FEATURE { get; set; } = "Fitur Ini Sedang Dalam Pengembangan";
+        public string LOGIN_TEMPORARY_BAN { get; set; } = "Terlalu banyak percobaan masuk, Login diblokir selama 1 Jam";
     }
 }
