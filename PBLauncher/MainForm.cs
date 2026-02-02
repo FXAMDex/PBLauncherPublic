@@ -264,6 +264,13 @@ namespace PBLauncher
             int totalFile = fileNames.Length;
             int progress = 0;
 
+            // Send Message If Directory Pack Not Found
+            if (!File.Exists(path))
+            {
+                MessageBox.Show("Folder File NotFound");
+                Application.Exit();
+            }
+
             foreach (string fileName in fileNames)
             {
                 string namaFile = Path.GetFileName(fileName);
