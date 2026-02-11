@@ -248,7 +248,8 @@ namespace PBLauncher.Login
                                 string storedPassword = reader["password"].ToString();
                                 if (storedPassword == password)
                                 {
-                                    //Logger.Log("Login berhasil");
+                                    //MessageBox.Show("Login berhasil ID : " + username + " Password : " + password);
+                                    return true;
                                 }
                             }
                         }
@@ -561,6 +562,7 @@ namespace PBLauncher.Login
                     else
                     {
                         MessageWrongPassOrID();
+                        //MessageBox.Show(username + password);
                     }
                 }
                 catch (Exception ex)

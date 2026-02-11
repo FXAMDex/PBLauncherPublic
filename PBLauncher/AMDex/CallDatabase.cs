@@ -16,7 +16,7 @@ namespace PBLauncher.AMDex
     {
         public static class DBConfig
         {
-            public static string DBCallConfig = "Host=localhost;Database=yourdatabase;Username=postgres;Password=yourpassword;";
+            public static string DBCallConfig = "Host=localhost;Database=postgres;Username=postgres;Password=123456;";
         }
         public static async Task ValidateDevice()
         {
