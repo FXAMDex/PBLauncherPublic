@@ -117,6 +117,7 @@ namespace PBLauncher.Login
             string VersionPBv324 = "3.24";
             string VersionPBv330 = "3.30.1807";
             string VersionPBv368 = "3.68";
+            string VersionPBv3100 = "3.100+";
             try
             {
                 if (VersionLoginPB == "1.15.42")
@@ -139,11 +140,16 @@ namespace PBLauncher.Login
                 {
                     RunGameV368();
                 }
+                else if (VersionLoginPB == "3.100+")
+                {
+                    RunGameV3100Revo();
+                }
                 else if (
                     VersionLoginPB != VersionPBv316 ||
                     VersionLoginPB != VersionPBv142 ||
                     VersionLoginPB != VersionPBv330 ||
-                    VersionLoginPB != VersionPBv368)
+                    VersionLoginPB != VersionPBv368 ||
+                    VersionLoginPB != VersionPBv3100)
 
                 {
                     MessageErrorTypeLogin();
@@ -221,6 +227,41 @@ namespace PBLauncher.Login
             {
                 Logger.Log("Kesalahan: " + ex.Message + " " + ex.InnerException);
                 return false;
+            }
+            return false;
+        }
+        private bool ValidateLoginV3Revo(string username, string password)
+        {
+            try
+            {
+                using (NpgsqlConnection conn = new NpgsqlConnection(connectionString))
+                {
+                    conn.Open();
+                    string query = "SELECT password FROM accounts WHERE username = @username";
+                    using (NpgsqlCommand cmd = new NpgsqlCommand(query, conn))
+                    {
+                        cmd.Parameters.Add("@username", NpgsqlDbType.Varchar).Value = username;
+                        using (NpgsqlDataReader reader = cmd.ExecuteReader())
+                        {
+                            while (reader.Read())
+                            {
+                                string storedPassword = reader["password"].ToString();
+                                if (storedPassword == password)
+                                {
+                                    //Logger.Log("Login berhasil");
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            catch (NpgsqlException ex)
+            {
+                Logger.Log("Kesalahan Server Database: " + ex.Message + " " + ex.InnerException);
+            }
+            catch (Exception ex)
+            {
+                Logger.Log("Kesalahan: " + ex.Message + " " + ex.InnerException);
             }
             return false;
         }
@@ -429,6 +470,104 @@ namespace PBLauncher.Login
         {
             // Same as V316RU, for the game executable
             // You game executable logic here
+        }
+        private async void RunGameV3100Revo()
+        {
+            {
+                try
+                {
+                    string username = InputUsername.Text;
+                    string password = InputPassword.Text;
+
+                    if (string.IsNullOrWhiteSpace(username) || string.IsNullOrWhiteSpace(password))
+                    {
+                        MessageNullID();
+                        return;
+                    }
+
+                    if (ValidateLoginV3Revo(username, password))
+                    {
+                        if (Connect._useXCLoader == "1") // ON GUARD
+                        {
+                            await CallDatabase.ValidateDevice();
+                            //LoginButton.Visible = false;
+                            this.Hide();
+                            await Task.Delay(10);
+                            string spinnetACPath = Path.Combine(System.Windows.Forms.Application.StartupPath, "SpinnetAC.exe");
+                            string pointBlankPath = Path.Combine(System.Windows.Forms.Application.StartupPath, "PointBlank.exe");
+                            if (File.Exists(spinnetACPath))
+                            {
+                                Process.Start(spinnetACPath);
+                                await Task.Delay(10);
+                                if (File.Exists(pointBlankPath))
+                                {
+                                    string connectionString = CallDatabase.DBConfig.DBCallConfig;
+                                    string query = "UPDATE accounts SET hwid = @hwid WHERE username = @username";
+                                    using (NpgsqlConnection connection = new NpgsqlConnection(connectionString))
+                                    {
+                                        connection.Open();
+                                        using (NpgsqlCommand command = new NpgsqlCommand(query, connection))
+                                        {
+                                            command.Parameters.AddWithValue("@hwid", AMDexCustom.GetHwid());
+                                            command.Parameters.AddWithValue("@username", username);
+                                            command.ExecuteNonQuery();
+                                        }
+                                    }
+                                    Process.Start(Application.StartupPath + @"\PointBlank.exe", " " + password + " " + password);
+                                    Application.Exit();
+                                }
+                                else
+                                {
+                                    MessageBox.Show(Instancia._strings.GAME_NOT_FOUND, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                }
+                            }
+                            else
+                            {
+                                MessageBox.Show(Instancia._strings.GAME_NOT_FOUND, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            }
+                        }
+                        else if (Connect._useXCLoader == "0") // OFF GUARD
+                        {
+                            await CallDatabase.ValidateDevice();
+                            //LoginButton.Visible = false;
+                            this.Hide();
+                            await Task.Delay(10);
+                            string spinnetACPath = Path.Combine(System.Windows.Forms.Application.StartupPath, "SpinnetAC.exe");
+                            string pointBlankPath = Path.Combine(System.Windows.Forms.Application.StartupPath, "PointBlank.exe");
+                            if (File.Exists(pointBlankPath))
+                            {
+                                string connectionString = CallDatabase.DBConfig.DBCallConfig;
+                                string query = "UPDATE accounts SET hwid = @hwid WHERE username = @username";
+                                using (NpgsqlConnection connection = new NpgsqlConnection(connectionString))
+                                {
+                                    connection.Open();
+                                    using (NpgsqlCommand command = new NpgsqlCommand(query, connection))
+                                    {
+                                        command.Parameters.AddWithValue("@hwid", AMDexCustom.GetHwid());
+                                        command.Parameters.AddWithValue("@username", username);
+                                        command.ExecuteNonQuery();
+                                    }
+                                }
+                                Process.Start(Application.StartupPath + @"\PointBlank.exe", " " + password + " " + password);
+                                Application.Exit();
+                            }
+                            else
+                            {
+                                MessageBox.Show(Instancia._strings.GAME_NOT_FOUND, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            }
+                        }
+                        Application.Exit();
+                    }
+                    else
+                    {
+                        MessageWrongPassOrID();
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Kesalahan: " + ex);
+                }
+            }
         }
         private void checkBox1_CheckedChanged(object sender, EventArgs e)
         {
